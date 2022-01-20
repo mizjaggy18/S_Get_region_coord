@@ -1,0 +1,134 @@
+{
+  "name": "Get_region_coord",
+  "description": "To get region coordinates from images of other projects",
+  "schema-version": "cytomine-0.1",
+  "container-image": {
+    "image": "mizjaggy18/s_get_region_coord",
+    "type": "singularity"
+  },
+  "command-line": "[CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_IMAGE] [CYTOMINE_ID_TERMS] [CYTOMINE_IMPORT_PROJECT] [CYTOMINE_IMPORT_IMAGE] [CYTOMINE_IMPORT_ONTOLOGY] [CYTOMINE_IMPORT_TERM]",
+  "inputs": [
+    {
+      "id": "cytomine_host",      
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine host",
+      "set-by-server": true,
+      "optional": false,
+      "type": "String"
+    },
+    {
+      "id": "cytomine_public_key",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine public key",
+      "set-by-server": true,
+      "optional": false,
+      "type": "String"
+    },
+    {  
+      "id": "cytomine_private_key",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine private key",
+      "set-by-server": true,
+      "optional": false,
+      "type": "String"
+    },
+    {
+      "id": "cytomine_id_project",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine project ID",
+      "set-by-server": true,
+      "optional": false,
+      "type": "Number"
+    },
+    {
+      "id": "cytomine_id_software",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine software ID",
+      "set-by-server": true,
+      "optional": false,
+      "type": "Number"
+    }, 
+    {
+      "id": "cytomine_id_image",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine Image ID",
+      "description": "Image to copy the region coordinates",
+      "set-by-server": false,
+      "optional": false,      
+      "type": "ListDomain",
+      "uri": "/api/project/$currentProject$/imageinstance.json",
+      "uri-sort-attribute": "instanceFilename",
+      "uri-print-attribute": "instanceFilename"
+    }, 
+    {
+      "id": "cytomine_id_terms",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine Term IDs",
+      "description": "Associated terms to be copied",
+      "set-by-server": false,
+      "optional": false,      
+      "type": "ListDomain",
+      "uri": "/api/ontology/$currentOntology$/term.json",
+      "uri-sort-attribute": "name",
+      "uri-print-attribute": "name"
+    },
+    {
+      "id": "cytomine_import_project",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine import project ID",
+      "set-by-server": false,
+      "optional": false,
+      "type": "ListDomain",
+      "uri": "/api/project.json",
+      "uri-sort-attribute": "instanceFilename",
+      "uri-print-attribute": "instanceFilename"
+    },
+    {
+      "id": "cytomine_import_image",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine Import Image ID",
+      "description": "Image to import the region coordinates",
+      "set-by-server": false,
+      "optional": false,      
+      "type": "ListDomain",
+      "uri": "/api/project/$cytomine_import_project$/imageinstance.json",
+      "uri-sort-attribute": "instanceFilename",
+      "uri-print-attribute": "instanceFilename"
+    },
+    {
+      "id": "cytomine_import_ontology",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine Import Ontology ID",
+      "description": "Ontology for terms to import the region coordinates",
+      "set-by-server": false,
+      "optional": false,      
+      "type": "ListDomain",
+      "uri": "/api/ontology.json",
+      "uri-sort-attribute": "instanceFilename",
+      "uri-print-attribute": "instanceFilename"
+    },
+    {
+      "id": "cytomine_import_term",
+      "value-key": "[@ID]",
+      "command-line-flag": "--@id",
+      "name": "Cytomine Import Term ID",
+      "description": "Associated term to be imported",
+      "set-by-server": false,
+      "optional": false,      
+      "type": "ListDomain",
+      "uri": "/api/ontology/$cytomine_import_ontology$/term.json",
+      "uri-sort-attribute": "name",
+      "uri-print-attribute": "name"
+    }
+  ]
+}
