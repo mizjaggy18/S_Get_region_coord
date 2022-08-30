@@ -110,15 +110,22 @@ def run(cyto_job, parameters):
     # print(project.id)
 
     # Get the list of annotations
-    annotations_import = AnnotationCollection()
-    annotations_import.image = import_image #id_image
-    annotations_import.term = import_term #id_term
-    annotations_import.project = import_project #project.id
-    annotations_import.showWKT = True
-    annotations_import.showMeta = True
-    annotations_import.showGIS = True
-    annotations_import.showTerm = True
-    annotations_import.fetch()
+    annotations_import = AnnotationCollection(
+        terms=[import_term],
+        image=import_image,
+        project=import_project,
+        showWKT=True,
+        includeAlgo=True
+    ).fetch()
+#     annotations_import = AnnotationCollection()
+#     annotations_import.image = import_image #id_image
+#     annotations_import.term = import_term #id_term
+#     annotations_import.project = import_project #project.id
+#     annotations_import.showWKT = True
+#     annotations_import.showMeta = True
+#     annotations_import.showGIS = True
+#     annotations_import.showTerm = True
+#     annotations_import.fetch()
     print("Total annotations: ",len(annotations_import))
     print(annotations_import)
     progress_delta=100-(progress)/len(annotations_import)
