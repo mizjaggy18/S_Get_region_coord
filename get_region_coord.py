@@ -40,6 +40,7 @@ def run(cyto_job, parameters):
     import_project = parameters.cytomine_import_project
     import_image = parameters.cytomine_import_image
     import_term = parameters.cytomine_import_term
+    import_user = parameters.cytomine_import_user
 
     # terms = TermCollection()
     # # terms.project = project.id
@@ -114,6 +115,7 @@ def run(cyto_job, parameters):
         terms=[import_term],
         image=import_image,
         project=import_project,
+        user=import_user,
         showBasic=True,
         showWKT=True,
         showUser=True,
