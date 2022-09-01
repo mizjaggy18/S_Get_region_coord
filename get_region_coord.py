@@ -96,14 +96,14 @@ def run(cyto_job, parameters):
     
 
     annotations = AnnotationCollection()
-    # annotations.image = id_image
-    # annotations.term = id_terms
-    # annotations.project = project.id
-    # annotations.showWKT = True
-    # annotations.showMeta = True
-    # annotations.showGIS = True
-    # annotations.showTerm = True
-    # annotations.fetch()
+    annotations.image = id_image
+    annotations.term = id_terms
+    annotations.project = project.id
+    annotations.showWKT = True
+    annotations.showMeta = True
+    annotations.showGIS = True
+    annotations.showTerm = True
+    annotations.fetch()
 
     # print(id_image)
     # print(id_terms)
@@ -114,7 +114,11 @@ def run(cyto_job, parameters):
         terms=[import_term],
         image=import_image,
         project=import_project,
+        showBasic=True,
         showWKT=True,
+        showUser=True,
+        showTerm=True,
+        showImage-True,
         includeAlgo=True
     ).fetch()
 #     annotations_import = AnnotationCollection()
