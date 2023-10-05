@@ -120,7 +120,7 @@ def run(cyto_job, parameters):
         showWKT=True,
         showUser=True,
         showTerm=True,
-        showImage-True,
+        showImage=True,
         includeAlgo=True
     ).fetch()
 #     annotations_import = AnnotationCollection()
