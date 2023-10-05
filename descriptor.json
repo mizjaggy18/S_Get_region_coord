@@ -1,6 +1,6 @@
 {
   "name": "Get_region_coord",
-  "description": "To get region coordinates from images of other projects",
+  "description": "To get/import region coordinates from images of other projects",
   "schema-version": "cytomine-0.1",
   "container-image": {
     "image": "mizjaggy18/s_get_region_coord",
@@ -84,12 +84,10 @@
       "value-key": "[@ID]",
       "command-line-flag": "--@id",
       "name": "Cytomine import project ID",
+      "description": "Project to import the region coordinates",
       "set-by-server": false,
       "optional": false,
-      "type": "ListDomain",
-      "uri": "/api/project.json",
-      "uri-sort-attribute": "name",
-      "uri-print-attribute": "name"
+      "type": "Number"
     },
     {
       "id": "cytomine_import_image",
