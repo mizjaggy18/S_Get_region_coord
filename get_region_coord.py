@@ -98,7 +98,7 @@ def run(cyto_job, parameters):
 
     annotations = AnnotationCollection()
     annotations.image = id_image
-    annotations.term = id_terms
+    # annotations.term = id_terms
     annotations.project = project.id
     annotations.showWKT = True
     annotations.showMeta = True
@@ -134,7 +134,7 @@ def run(cyto_job, parameters):
 #     annotations_import.fetch()
     print("Total annotations: ",len(annotations_import))
     print(annotations_import)
-    progress_delta=100-(progress)/len(annotations_import)
+    # progress_delta=100-(progress)/len(annotations_import)
 
     # print(import_image)
     # print(import_term)
@@ -144,6 +144,8 @@ def run(cyto_job, parameters):
         # progress += progress_delta
         # print(progress)
         roi_geometry = wkt.loads(anno.location)
+        print(roi_geometry)
+        print(anno.wkt)
         annotations.append(Annotation(
             location=roi_geometry.wkt,
             id_image=id_image,
