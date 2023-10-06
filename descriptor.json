@@ -6,7 +6,7 @@
     "image": "mizjaggy18/s_get_region_coord",
     "type": "singularity"
   },
-  "command-line": "[CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_IMAGE] [CYTOMINE_ID_TERMS] [CYTOMINE_IMPORT_PROJECT] [CYTOMINE_IMPORT_IMAGE] [CYTOMINE_IMPORT_TERM] [CYTOMINE_IMPORT_USER]",
+  "command-line": "[CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_IMAGE] [CYTOMINE_ID_TERM] [CYTOMINE_IMPORT_PROJECT] [CYTOMINE_IMPORT_IMAGE] [CYTOMINE_IMPORT_TERM] [CYTOMINE_IMPORT_USER]",
   "inputs": [
     {
       "id": "cytomine_host",      
@@ -67,11 +67,11 @@
       "uri-print-attribute": "instanceFilename"
     }, 
     {
-      "id": "cytomine_id_terms",
+      "id": "cytomine_id_term",
       "value-key": "[@ID]",
       "command-line-flag": "--@id",
-      "name": "Cytomine Term IDs",
-      "description": "Associated terms to be copied",
+      "name": "Cytomine Term ID",
+      "description": "Associated term to be copied to",
       "set-by-server": false,
       "optional": false,      
       "type": "ListDomain",
