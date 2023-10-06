@@ -44,12 +44,8 @@ def run(cyto_job, parameters):
     import_term = parameters.cytomine_import_term
     import_user = parameters.cytomine_import_user
 
-    job.update(status=Job.RUNNING, progress=5, statusComment="Parameters gathered...")
+    job.update(status=Job.RUNNING, progress=10, statusComment="Parameters gathered...")
     
-    terms = TermCollection().fetch_with_filter("project", project.id)    
-    images = ImageInstanceCollection().fetch_with_filter("project", project.id)
-    job.update(status=Job.RUNNING, progress=10, statusComment="Terms and images gathered...")    
-
     # Get the list of annotations to import
     annotations_import = AnnotationCollection(
         terms=[import_term],
@@ -63,17 +59,17 @@ def run(cyto_job, parameters):
         includeAlgo=True
     ).fetch()
 
-    print("Total annotations to import: ",len(annotations_import))
+    print("Total annotations to import: ",len(annotations_import))    
+
+    job.update(status=Job.RUNNING, progress=20, statusComment="Gathered annotations to import...")
     
-    annotations = AnnotationCollection()
     for anno in annotations_import:
         roi_geometry = wkt.loads(anno.location)        
-        annotations.append(Annotation(
+        Annotation(
             location=roi_geometry.wkt,
             id_image=id_image,
             id_project=project.id,
-            id_terms=[id_term]))   
-    annotations.save()
+            id_terms=[id_term]).save()
                 
 
 if __name__ == "__main__":
