@@ -1,19 +1,14 @@
-# * Copyright (c) 2009-2020. Authors: see NOTICE file.
-# *
-# * Licensed under the Apache License, Version 2.0 (the "License");
-# * you may not use this file except in compliance with the License.
-# * You may obtain a copy of the License at
-# *
-# *      http://www.apache.org/licenses/LICENSE-2.0
-# *
-# * Unless required by applicable law or agreed to in writing, software
-# * distributed under the License is distributed on an "AS IS" BASIS,
-# * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# * See the License for the specific language governing permissions and
-# * limitations under the License.
+FROM python:3.8-slim-bullseye
 
-FROM cytomine/software-python3-base
+RUN python -m pip install -U --force-reinstall pip
+RUN apt-get update -y && apt-get install -y git libgeos-dev libglib2.0-0
 
-ADD get_region_coord.py /app/get_region_coord.py
 
-ENTRYPOINT ["python3", "/app/get_region_coord.py"]
+COPY get_region_coord.py /app/get_region_coord.py
+RUN git clone https://github.com/cytomine/Cytomine-python-client.git && \
+    cd Cytomine-python-client && \
+    git checkout v2.2.0 && \
+    python setup.py build && \
+    python setup.py install
+
+ENTRYPOINT ["python", "/app/get_region_coord.py"]
