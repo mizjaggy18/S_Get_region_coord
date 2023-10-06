@@ -18,6 +18,7 @@ __author__ = "WSH Munirah W Ahmad 5 Jan 2022 <wshmunirah@gmail.com>"
 __copyright__ = "Apache 2 license. Made by Multimedia University Cytomine Team, Cyberjaya, Malaysia, http://cytomine.mmu.edu.my/"
 __version__ = "1.0.0"
 
+import os
 import logging
 import sys
 from argparse import ArgumentParser
@@ -26,6 +27,7 @@ from shapely.geometry import Point, box
 from shapely import wkt
 
 import cytomine
+from cytomine import Cytomine
 from cytomine.models import Property, Annotation, AnnotationTerm, AnnotationCollection, JobData, Job, TermCollection, ImageInstanceCollection, ImageInstance
 
 
@@ -36,7 +38,7 @@ def run(cyto_job, parameters):
     job = cyto_job.job
     project = cyto_job.project
     id_image = parameters.cytomine_id_image
-    id_terms = parameters.cytomine_id_terms
+    id_term = parameters.cytomine_id_term
     import_project = parameters.cytomine_import_project
     import_image = parameters.cytomine_import_image
     import_term = parameters.cytomine_import_term
@@ -70,7 +72,7 @@ def run(cyto_job, parameters):
             location=roi_geometry.wkt,
             id_image=id_image,
             id_project=project.id,
-            id_terms=[id_terms]))   
+            id_terms=[id_term]))   
     annotations.save()
                 
 
