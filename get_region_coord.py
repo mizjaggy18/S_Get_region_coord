@@ -66,9 +66,8 @@ def run(cyto_job, parameters):
     # # for id_image in list_imgs2:
     # #     print(id_image) 
 
-    # images = ImageInstanceCollection().fetch_with_filter("project", project.id)
-    # conn.job.update(status=Job.RUNNING, progress=2, statusComment="Images gathered...")
-    job.update(status=Job.RUNNING, progress=2, statusComment="Terms gathered...")
+    images = ImageInstanceCollection().fetch_with_filter("project", project.id)
+    job.update(status=Job.RUNNING, progress=2, statusComment="Terms and images gathered...")
     
     # print('images id:',images)
 
@@ -141,19 +140,19 @@ def run(cyto_job, parameters):
     # print(import_project)
 
     for anno in annotations_import:
-        # progress += progress_delta
-        # print(progress)
         roi_geometry = wkt.loads(anno.location)
-        print(roi_geometry)
-        print(anno.wkt)
-        annotations.append(Annotation(
-            location=roi_geometry.wkt,
-            id_image=id_image,
-            id_project=project.id,
-            id_terms=[id_terms]))
-        print(".",end = '',flush=True)
-        
-    annotations.save()
+        Annotation(
+        location=roi_geometry.wkt,
+        id_image=id_image,
+        id_project=project.id,
+        id_terms=[id_terms]).save()
+    #     annotations.append(Annotation(
+    #         location=roi_geometry.wkt,
+    #         id_image=id_image,
+    #         id_project=project.id,
+    #         id_terms=[id_terms]))
+    #     print(".",end = '',flush=True)        
+    # annotations.save()
         # annotation_import = Annotation(location=roi_geometry.wkt, id_image=id_image, id_project=project.id).save()
         # # print(annotation_import.id)
         # AnnotationTerm(annotation_import.id, [id_terms]).save()
