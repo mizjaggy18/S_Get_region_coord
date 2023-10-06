@@ -53,7 +53,6 @@ def run(cyto_job, parameters):
         terms=[import_term],
         image=import_image,
         project=import_project,
-        user=import_user,
         showBasic=True,
         showWKT=True,
         showUser=True,
@@ -65,9 +64,6 @@ def run(cyto_job, parameters):
     print("Total annotations to import: ",len(annotations_import))
     
     annotations = AnnotationCollection()
-
-    # progress_delta=100-(progress)/len(annotations_import)
-
     for anno in annotations_import:
         roi_geometry = wkt.loads(anno.location)        
         annotations.append(Annotation(
@@ -76,12 +72,6 @@ def run(cyto_job, parameters):
             id_project=project.id,
             id_terms=[id_terms]))   
     annotations.save()
-
-        # annotation_import = Annotation(location=roi_geometry.wkt, id_image=id_image, id_project=project.id).save()
-        # # print(annotation_import.id)
-        # AnnotationTerm(annotation_import.id, [id_terms]).save()  
-        # job.update(status=Job.RUNNING, progress=progress, statusComment="Copying region coordinates....")
-            # annotation.delete()
                 
 
 if __name__ == "__main__":
