@@ -28,7 +28,7 @@ from shapely import wkt
 
 import cytomine
 from cytomine import Cytomine
-from cytomine.models import Property, Annotation, AnnotationTerm, AnnotationCollection, JobData, Job, TermCollection, ImageInstanceCollection, ImageInstance
+from cytomine.models import Property, Annotation, AnnotationTerm, AnnotationCollection, JobData, Job, User, TermCollection, ImageInstanceCollection, ImageInstance
 
 
 def run(cyto_job, parameters):
@@ -36,6 +36,7 @@ def run(cyto_job, parameters):
     logging.info("Entering run(cyto_job=%s, parameters=%s)", cyto_job, parameters)
 
     job = cyto_job.job
+    user = job.userJob
     project = cyto_job.project
     id_image = parameters.cytomine_id_image
     id_term = parameters.cytomine_id_term
@@ -67,6 +68,7 @@ def run(cyto_job, parameters):
         roi_geometry = wkt.loads(anno.location)        
         Annotation(
             location=roi_geometry.wkt,
+            user=user,
             id_image=id_image,
             id_project=project.id,
             id_terms=[id_term]).save()
