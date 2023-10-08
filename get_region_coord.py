@@ -89,7 +89,7 @@ def main(argv):
         working_path = os.path.join(base_path,str(conn.job.id))
         current_dir = os.path.dirname(__file__)
 
-        project = conn.parameters.cytomine_id_project
+        id_project = conn.parameters.cytomine_id_project
         id_image = conn.parameters.cytomine_id_image
         id_term = conn.parameters.cytomine_id_term
         import_project = conn.parameters.cytomine_import_project
@@ -124,7 +124,7 @@ def main(argv):
                 location=roi_geometry.wkt,
                 # user=user,
                 id_image=id_image,
-                id_project=project.id,
+                id_project=id_project,
                 id_terms=[id_term]).save()
                
 
