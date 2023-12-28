@@ -30,55 +30,6 @@ import cytomine
 from cytomine import Cytomine, CytomineJob
 from cytomine.models import Property, Annotation, AnnotationTerm, AnnotationCollection, JobData, Job, User, TermCollection, ImageInstanceCollection, ImageInstance
 
-
-# def run(cyto_job, parameters):
-#     logging.info("----- Get region coordinates v%s -----", __version__)
-#     logging.info("Entering run(cyto_job=%s, parameters=%s)", cyto_job, parameters)
-
-#     job = cyto_job.job
-#     user = job.userJob
-#     project = cyto_job.project
-#     id_image = parameters.cytomine_id_image
-#     id_term = parameters.cytomine_id_term
-#     import_project = parameters.cytomine_import_project
-#     import_image = parameters.cytomine_import_image
-#     import_term = parameters.cytomine_import_term
-#     import_user = parameters.cytomine_import_user
-
-#     job.update(status=Job.RUNNING, progress=10, statusComment="Parameters gathered...")
-    
-#     # Get the list of annotations to import
-#     annotations_import = AnnotationCollection(
-#         terms=[import_term],
-#         image=import_image,
-#         project=import_project,
-#         showBasic=True,
-#         showWKT=True,
-#         showUser=True,
-#         showTerm=True,
-#         showImage=True,
-#         includeAlgo=True
-#     ).fetch()
-
-#     print("Total annotations to import: ",len(annotations_import))    
-
-#     job.update(status=Job.RUNNING, progress=20, statusComment="Gathered annotations to import...")
-    
-#     for anno in annotations_import:
-#         roi_geometry = wkt.loads(anno.location)        
-#         Annotation(
-#             location=roi_geometry.wkt,
-#             user=user,
-#             id_image=id_image,
-#             id_project=project.id,
-#             id_terms=[id_term]).save()
-                
-
-# if __name__ == "__main__":
-#     logging.debug("Command: %s", sys.argv)
-#     with cytomine.CytomineJob.from_cli(sys.argv) as cyto_job:
-#          run(cyto_job, cyto_job.parameters)
-
 def main(argv):
     with CytomineJob.from_cli(argv) as conn:
     # with Cytomine(argv) as conn:
@@ -106,12 +57,12 @@ def main(argv):
             terms=[import_term],
             image=import_image,
             project=import_project,
-            showBasic=True,
-            showWKT=True,
-            showUser=True,
-            showTerm=True,
-            showImage=True,
-            includeAlgo=True
+            # showBasic=True,
+            showWKT=True
+            # showUser=True,
+            # showTerm=True,
+            # showImage=True,
+            # includeAlgo=True
         ).fetch()
     
         print("Total annotations to import: ",len(annotations_import))    
